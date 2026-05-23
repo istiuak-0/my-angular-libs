@@ -32,12 +32,11 @@ export abstract class SimpleSignalStore<
   private _transient: WritableSignal<T>;
   private activeDebounceTime = -1;
   private waitingQuery: Q | null = null;
+  private active = signal(false);
 
   protected debounceTime: number;
   protected cacheEnabled = signal(false);
   protected cacheLimit: number;
-
-  active = signal(false);
 
   get query(): Signal<Q> {
     return this._query.asReadonly();
@@ -49,6 +48,10 @@ export abstract class SimpleSignalStore<
 
   get transient(): Signal<T> {
     return this._transient.asReadonly();
+  }
+
+  get isActive(): Signal<boolean> {
+    return this.active.asReadonly();
   }
 
   constructor(initialState: SimpleSignalStoreState<Q, R, T>, config?: SimpleSignalStoreConfig) {
@@ -118,14 +121,15 @@ export abstract class SimpleSignalStore<
 
   protected abstract runOnceAfterStart(): void;
 
-  setQuery(query: Partial<Q>, debounceTime = 0) {
+  setQuery(query: Partial<Q>, customDebounceTimeMs = 0) {
     const newQuery = { ...this.query(), ...query };
     if (isEqual(newQuery, this.query())) return;
 
     this.waitingQuery = newQuery;
     if (this.activeDebounceTime > -1) return;
 
-    this.activeDebounceTime = this.debounceTime > debounceTime ? this.debounceTime : debounceTime;
+    this.activeDebounceTime =
+      this.debounceTime > customDebounceTimeMs ? this.debounceTime : customDebounceTimeMs;
 
     timer(this.activeDebounceTime)
       .pipe(take(1))
@@ -150,7 +154,7 @@ export abstract class SimpleSignalStore<
   }
 
   private getCachedResult(query: Q): R | undefined {
-    if (!this.cacheEnabled) return undefined;
+    if (!this.cacheEnabled()) return undefined;
 
     const key = this.getCacheKey(query);
     if (this.cache.has(key)) {
@@ -160,7 +164,7 @@ export abstract class SimpleSignalStore<
   }
 
   private cacheResult(result: R) {
-    if (!this.cacheEnabled) return;
+    if (!this.cacheEnabled()) return;
     if (this.cache.size >= Math.abs(this.cacheLimit)) {
       removeOldestEntry(this.cache);
     }
