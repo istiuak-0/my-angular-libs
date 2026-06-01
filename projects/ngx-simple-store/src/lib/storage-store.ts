@@ -1,5 +1,5 @@
-import { destr } from 'destr'
 import { serializeObject } from '@touhidrahman/simple-store'
+import { destr } from 'destr'
 
 export class StorageStore<T> {
     private storage: Storage
@@ -16,7 +16,10 @@ export class StorageStore<T> {
     }
 
     setState(value: Partial<T>, sideEffectFn?: () => void): void {
-        this.storage?.setItem(this.key, serializeObject({ ...this.getState(), ...value }, false))
+        this.storage?.setItem(
+            this.key,
+            serializeObject({ ...this.getState(), ...value }, false),
+        )
         sideEffectFn?.()
     }
 
