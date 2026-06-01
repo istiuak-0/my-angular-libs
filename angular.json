@@ -34,63 +34,28 @@
             }
         },
         "ngx-common": {
-            "projectType": "application",
-            "schematics": {},
+            "projectType": "library",
             "root": "projects/ngx-common",
             "sourceRoot": "projects/ngx-common/src",
-            "prefix": "app",
+            "prefix": "lib",
             "architect": {
                 "build": {
-                    "builder": "@angular/build:application",
-                    "options": {
-                        "browser": "projects/ngx-common/src/main.ts",
-                        "tsConfig": "projects/ngx-common/tsconfig.app.json",
-                        "assets": [
-                            {
-                                "glob": "**/*",
-                                "input": "projects/ngx-common/public"
-                            }
-                        ],
-                        "styles": ["projects/ngx-common/src/styles.css"]
-                    },
+                    "builder": "@angular/build:ng-packagr",
                     "configurations": {
                         "production": {
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "500kB",
-                                    "maximumError": "1MB"
-                                },
-                                {
-                                    "type": "anyComponentStyle",
-                                    "maximumWarning": "4kB",
-                                    "maximumError": "8kB"
-                                }
-                            ],
-                            "outputHashing": "all"
+                            "tsConfig": "projects/ngx-common/tsconfig.lib.prod.json"
                         },
                         "development": {
-                            "optimization": false,
-                            "extractLicenses": false,
-                            "sourceMap": true
+                            "tsConfig": "projects/ngx-common/tsconfig.lib.json"
                         }
                     },
                     "defaultConfiguration": "production"
                 },
-                "serve": {
-                    "builder": "@angular/build:dev-server",
-                    "configurations": {
-                        "production": {
-                            "buildTarget": "ngx-common:build:production"
-                        },
-                        "development": {
-                            "buildTarget": "ngx-common:build:development"
-                        }
-                    },
-                    "defaultConfiguration": "development"
-                },
                 "test": {
-                    "builder": "@angular/build:unit-test"
+                    "builder": "@angular/build:unit-test",
+                    "options": {
+                        "tsConfig": "projects/ngx-common/tsconfig.spec.json"
+                    }
                 }
             }
         }

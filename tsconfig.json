@@ -8,6 +8,7 @@
         "noPropertyAccessFromIndexSignature": true,
         "noImplicitReturns": true,
         "paths": {
+            "ngx-common": ["./dist/ngx-common"],
             "ngx-simple-store": ["./dist/ngx-simple-store"]
         },
         "noFallthroughCasesInSwitch": true,
@@ -34,6 +35,12 @@
         },
         {
             "path": "./projects/ngx-common/tsconfig.app.json"
+        },
+        {
+            "path": "./projects/ngx-common/tsconfig.spec.json"
+        },
+        {
+            "path": "./projects/ngx-common/tsconfig.lib.json"
         },
         {
             "path": "./projects/ngx-common/tsconfig.spec.json"
