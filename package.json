@@ -14,7 +14,6 @@
     "release:major:ngx-simple-store": "pnpm --filter @touhidrahman/ngx-simple-store exec pnpm version major && pnpm build ngx-simple-store && git push && git push --tags",
     "ship:ngx-simple-store": "cd dist/ngx-simple-store && pnpm publish --access public"
   },
-  "private": true,
   "packageManager": "pnpm@10.18.3",
   "dependencies": {
     "@angular/common": "^21.1.0",
@@ -35,8 +34,11 @@
     "@angular/build": "^21.1.4",
     "@angular/cli": "^21.1.4",
     "@angular/compiler-cli": "^21.1.0",
+    "@tailwindcss/postcss": "^4.1.12",
     "jsdom": "^27.1.0",
     "ng-packagr": "^21.1.0",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.12",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
   }
