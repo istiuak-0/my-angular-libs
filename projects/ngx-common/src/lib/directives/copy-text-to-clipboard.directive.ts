@@ -10,7 +10,7 @@ export class CopyToClipboardDirective {
     @HostListener('click')
     async handleClick() {
         try {
-            await navigator.clipboard.writeText(this.copyText.trim() ?? '')
+            await navigator.clipboard.writeText(this.copyText?.trim() ?? '')
         } catch (err) {
             console.error('Clipboard copy failed:', err)
         }

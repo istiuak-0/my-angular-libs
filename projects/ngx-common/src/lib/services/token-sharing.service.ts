@@ -11,10 +11,10 @@ const REQUESTING_TOKEN = 'ngx-common-requesting-token'
 })
 export class TokenSharingService {
     private bc = new BroadcastChannel(TOKEN_SHARING_CHANNEL)
-    private accessTokenResolver: () => string
-    private refreshTokenResolver: () => string
-    private accessTokenSaver: (token: string) => void
-    private refreshTokenSaver: (token: string) => void
+    private accessTokenResolver: () => string = () => ''
+    private refreshTokenResolver: () => string = () => ''
+    private accessTokenSaver: (token: string) => void = () => {}
+    private refreshTokenSaver: (token: string) => void = () => {}
 
     init(data: {
         accessTokenResolver: () => string

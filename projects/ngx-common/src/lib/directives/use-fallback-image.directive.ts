@@ -1,7 +1,7 @@
 import { Directive, Input } from '@angular/core'
 
 @Directive({
-    selector: '[ngxUseFallbackImage]',
+    selector: 'img[ngxUseFallbackImage]',
     host: {
         '[src]': 'checkPath(src)',
         '(error)': 'onError()',

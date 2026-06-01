@@ -8,6 +8,11 @@ export class ApiService<T, TCreate> implements AbstractApiService<T, TCreate> {
     protected apiUrl: string
     protected http: HttpClient
 
+    constructor(apiUrl: string, http: HttpClient) {
+        this.apiUrl = apiUrl
+        this.http = http
+    }
+
     count(params: Params = {}): Observable<number> {
         return this.http.get<number>(`${this.apiUrl}/count`, { params })
     }
@@ -44,7 +49,7 @@ export class ApiService<T, TCreate> implements AbstractApiService<T, TCreate> {
         })
     }
 
-    createMany(dto: Partial<T>[]): Observable<ApiResponse<T[]>> {
+    createMany(dto: TCreate[]): Observable<ApiResponse<T[]>> {
         return this.http.post<ApiResponse<T[]>>(`${this.apiUrl}/many`, dto)
     }
 }

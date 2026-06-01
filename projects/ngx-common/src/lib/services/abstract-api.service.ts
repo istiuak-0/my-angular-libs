@@ -8,7 +8,7 @@ export abstract class AbstractApiService<T, TCreate> {
     abstract search(term: string): Observable<ApiResponse<T[]>>
     abstract count(params: Params): Observable<number>
     abstract create(dto: TCreate): Observable<ApiResponse<T>>
-    abstract createMany(dto: Partial<TCreate>[]): Observable<ApiResponse<T[]>>
+    abstract createMany(dto: TCreate[]): Observable<ApiResponse<T[]>>
     abstract update(
         id: string,
         body: Partial<TCreate>,

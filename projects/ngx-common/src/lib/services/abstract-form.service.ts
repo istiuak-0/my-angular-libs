@@ -2,12 +2,12 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { map, Observable, tap, throwError } from 'rxjs'
 import { AbstractApiService } from './abstract-api.service'
 
-export abstract class AbstractFormService<T> {
+export abstract class AbstractFormService<T, TCreate> {
     form: FormGroup
 
     constructor(
         protected fb: FormBuilder,
-        protected apiService: AbstractApiService<T>,
+        protected apiService: AbstractApiService<T, TCreate>,
     ) {
         this.form = this.buildForm()
     }
@@ -17,7 +17,7 @@ export abstract class AbstractFormService<T> {
         return this.form.valid
     }
 
-    getFormValue(): T {
+    getFormValue(): TCreate {
         return this.form.value
     }
 
