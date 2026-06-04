@@ -1,0 +1,29 @@
+name: Publish ngx-simple-store
+
+on:
+  push:
+    tags:
+      - "ngx-simple-store-v*"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+          cache: npm
+
+      - run: npm ci
+      - run: npx ng build ngx-simple-store
+      - run: npm install -g npm@latest
+
+      - run: npm publish --access public
+        working-directory: dist/ngx-simple-store
