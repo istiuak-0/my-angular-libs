@@ -1,7 +1,7 @@
-export function addPhoneNumberPrefix(identifier: string): string {
-    const value = identifier?.trim() || ''
-    if (value && !value.includes('@') && !value.startsWith('+88')) {
-        return `+88${value}`
+export function addPhonePrefix(input: string, prefix: string): string {
+    const value = input.trim().toLowerCase() || ''
+    if (value && !value.includes('@') && !value.startsWith(prefix)) {
+        return `${prefix}${value}`
     }
     return value
 }

@@ -16,7 +16,6 @@
 npm install @touhidrahman/ngx-common
 ```
 
-
 ## Directives
 
 ### `ngxClickOutside`
@@ -25,7 +24,7 @@ Emits an event when the user clicks outside the host element.
 
 ```html
 <div (clickOutside)="onClickedOutside($event)" ngxClickOutside>
-  Click outside this div to trigger
+    Click outside this div to trigger
 </div>
 ```
 
@@ -47,7 +46,7 @@ Copies the bound text to the clipboard when the element is clicked.
 
 ```typescript
 // Standalone
-import { CopyToClipboardDirective } from '@touhidrahman/ngx-common';
+import { CopyToClipboardDirective } from '@touhidrahman/ngx-common'
 ```
 
 ---
@@ -68,9 +67,12 @@ Prevents navigation on anchor elements when the `href` is not a valid URL.
 Downloads files by fetching cross-origin URLs as blobs. Provides `loading` and `error` public properties via a template reference.
 
 ```html
-<a download="report.pdf" href="https://example.com/report.pdf"
-   #downloader="appDownload">
-  Download
+<a
+    download="report.pdf"
+    href="https://example.com/report.pdf"
+    #downloader="appDownload"
+>
+    Download
 </a>
 <span *ngIf="downloader.loading">Downloading...</span>
 <span *ngIf="downloader.error">Download failed</span>
@@ -95,8 +97,7 @@ Toggles `visibility: hidden` on the element (element still occupies space, unlik
 Navigates the browser back one step in history on click.
 
 ```html
-<button ngxOnClickGoBack>Go Back</button>
-<a ngxOnClickGoBack>Back</a>
+<button ngxOnClickGoBack>Go Back</button> <a ngxOnClickGoBack>Back</a>
 ```
 
 ---
@@ -106,14 +107,12 @@ Navigates the browser back one step in history on click.
 Repeats the host element's content a specified number of times. Exposes the current `index` in the context.
 
 ```html
-<div *ngxRepeat="5; let i = index">
-  Item #{{ i + 1 }}
-</div>
+<div *ngxRepeat="5; let i = index">Item #{{ i + 1 }}</div>
 ```
 
 ```typescript
 // Standalone
-import { RepeatDirective } from '@touhidrahman/ngx-common';
+import { RepeatDirective } from '@touhidrahman/ngx-common'
 ```
 
 ---
@@ -124,20 +123,27 @@ Adds scroll control capabilities: check overflow, scroll programmatically, and d
 
 ```html
 <div #scrollRef="ngxScrollable" ngxScrollable [scrollUnit]="200">
-  <div *ngFor="let item of items" style="display: inline-block; width: 200px;">
-    {{ item }}
-  </div>
+    <div
+        *ngFor="let item of items"
+        style="display: inline-block; width: 200px;"
+    >
+        {{ item }}
+    </div>
 </div>
-<button (click)="scrollRef.scroll(-1)" [disabled]="!scrollRef.canScrollStart">Left</button>
-<button (click)="scrollRef.scroll(1)" [disabled]="!scrollRef.canScrollEnd">Right</button>
+<button (click)="scrollRef.scroll(-1)" [disabled]="!scrollRef.canScrollStart">
+    Left
+</button>
+<button (click)="scrollRef.scroll(1)" [disabled]="!scrollRef.canScrollEnd">
+    Right
+</button>
 ```
 
-| Property/Method | Type | Description |
-|-----------------|------|-------------|
-| `scrollUnit` | Input | Pixels to scroll per `scroll()` call |
-| `isOverflow` | Getter | Whether content overflows the container width |
-| `canScrollStart` | Getter | Whether the user can scroll left |
-| `canScrollEnd` | Getter | Whether the user can scroll right |
+| Property/Method     | Type   | Description                                       |
+| ------------------- | ------ | ------------------------------------------------- |
+| `scrollUnit`        | Input  | Pixels to scroll per `scroll()` call              |
+| `isOverflow`        | Getter | Whether content overflows the container width     |
+| `canScrollStart`    | Getter | Whether the user can scroll left                  |
+| `canScrollEnd`      | Getter | Whether the user can scroll right                 |
 | `scroll(direction)` | Method | Scrolls left (-1) or right (1) by `scrollUnit` px |
 
 ---
@@ -149,8 +155,6 @@ Shows a transparent 1x1 placeholder when the image source is empty or fails to l
 ```html
 <img [src]="user.avatarUrl" ngxUseFallbackImage />
 ```
-
-
 
 ## Pipes
 
@@ -173,8 +177,16 @@ Converts a number of bytes into a human-readable format.
 Rounds a number up (`Math.ceil`).
 
 ```typescript
-{{ 4.2 | ceiling }}   // 5
-{{ -4.2 | ceiling }}  // -4
+{
+    {
+        4.2 | ceiling
+    }
+} // 5
+{
+    {
+        ;-4.2 | ceiling
+    }
+} // -4
 ```
 
 ---
@@ -210,8 +222,16 @@ const items = [{ name: 'John' }, { name: 'Jane' }];
 Rounds a number down (`Math.floor`).
 
 ```typescript
-{{ 4.9 | floor }}   // 4
-{{ -4.9 | floor }}  // -5
+{
+    {
+        4.9 | floor
+    }
+} // 4
+{
+    {
+        ;-4.9 | floor
+    }
+} // -5
 ```
 
 ---
@@ -221,8 +241,16 @@ Rounds a number down (`Math.floor`).
 Returns the first character of a string, uppercased.
 
 ```typescript
-{{ 'john' | initialName }}  // "J"
-{{ '' | initialName }}      // ""
+{
+    {
+        'john' | initialName
+    }
+} // "J"
+{
+    {
+        '' | initialName
+    }
+} // ""
 ```
 
 ---
@@ -232,8 +260,16 @@ Returns the first character of a string, uppercased.
 Checks if a filename has an image extension (`jpg`, `jpeg`, `png`, `gif`, `bmp`, `svg`, `webp`).
 
 ```typescript
-{{ 'photo.jpg' | isImage }}       // true
-{{ 'document.pdf' | isImage }}    // false
+{
+    {
+        'photo.jpg' | isImage
+    }
+} // true
+{
+    {
+        'document.pdf' | isImage
+    }
+} // false
 ```
 
 ---
@@ -293,7 +329,11 @@ Useful for pagination:
 Converts a date into a relative time string.
 
 ```typescript
-{{ someDate | relativeTime }}
+{
+    {
+        someDate | relativeTime
+    }
+}
 // "just now", "5 minutes ago", "2 hours ago", "1 day ago", "recently"
 ```
 
@@ -367,7 +407,11 @@ Truncates a string to a character limit with ellipsis, optionally preserving who
 Capitalizes the first character of a string.
 
 ```typescript
-{{ 'hello world' | titlecase }}  // "Hello world"
+{
+    {
+        'hello world' | titlecase
+    }
+} // "Hello world"
 ```
 
 ---
@@ -377,8 +421,16 @@ Capitalizes the first character of a string.
 Filters an array to unique values.
 
 ```typescript
-{{ [1, 2, 2, 3, 3, 3] | unique }}  // [1, 2, 3]
-{{ ['a','b','a','c'] | unique }}    // ['a', 'b', 'c']
+{
+    {
+        ;[1, 2, 2, 3, 3, 3] | unique
+    }
+} // [1, 2, 3]
+{
+    {
+        ;['a', 'b', 'a', 'c'] | unique
+    }
+} // ['a', 'b', 'c']
 ```
 
 ---
@@ -417,30 +469,37 @@ Checks if a value exists in an array.
 Concrete implementation of CRUD operations using `HttpClient`.
 
 ```typescript
-import { ApiService } from '@touhidrahman/ngx-common';
+import { ApiService } from '@touhidrahman/ngx-common'
 
-interface User { id: string; name: string; email: string }
-interface CreateUserDto { name: string; email: string }
+interface User {
+    id: string
+    name: string
+    email: string
+}
+interface CreateUserDto {
+    name: string
+    email: string
+}
 
 @Injectable({ providedIn: 'root' })
 export class UserService extends ApiService<User, CreateUserDto> {
-  constructor(http: HttpClient) {
-    super('/api/users', http);
-  }
+    constructor(http: HttpClient) {
+        super('/api/users', http)
+    }
 }
 ```
 
-| Method | HTTP | Endpoint |
-|--------|------|----------|
-| `findById(id)` | GET | `/{id}` |
-| `find(params)` | GET | `?params` |
-| `search(term)` | GET | `?search=term` |
-| `count(params)` | GET | `/count?params` |
-| `create(dto)` | POST | `/` |
-| `createMany(dtos)` | POST | `/many` |
-| `update(id, body)` | PATCH | `/{id}` |
-| `delete(id)` | DELETE | `/{id}` |
-| `deleteMany(ids)` | DELETE | `/` (body: ids) |
+| Method             | HTTP   | Endpoint        |
+| ------------------ | ------ | --------------- |
+| `findById(id)`     | GET    | `/{id}`         |
+| `find(params)`     | GET    | `?params`       |
+| `search(term)`     | GET    | `?search=term`  |
+| `count(params)`    | GET    | `/count?params` |
+| `create(dto)`      | POST   | `/`             |
+| `createMany(dtos)` | POST   | `/many`         |
+| `update(id, body)` | PATCH  | `/{id}`         |
+| `delete(id)`       | DELETE | `/{id}`         |
+| `deleteMany(ids)`  | DELETE | `/` (body: ids) |
 
 ---
 
@@ -449,11 +508,14 @@ export class UserService extends ApiService<User, CreateUserDto> {
 Abstract base class for defining custom API service contracts.
 
 ```typescript
-import { AbstractApiService } from '@touhidrahman/ngx-common';
+import { AbstractApiService } from '@touhidrahman/ngx-common'
 
 @Injectable()
-export class CustomApiService<T, TCreate> extends AbstractApiService<T, TCreate> {
-  // Must implement all abstract methods
+export class CustomApiService<T, TCreate> extends AbstractApiService<
+    T,
+    TCreate
+> {
+    // Must implement all abstract methods
 }
 ```
 
@@ -464,16 +526,16 @@ export class CustomApiService<T, TCreate> extends AbstractApiService<T, TCreate>
 Bridges Angular Reactive Forms with an API service. Handles form building, population from API, and save logic (create/update).
 
 ```typescript
-import { AbstractFormService } from '@touhidrahman/ngx-common';
+import { AbstractFormService } from '@touhidrahman/ngx-common'
 
 @Injectable()
 export class UserFormService extends AbstractFormService<User, CreateUserDto> {
-  buildForm(): FormGroup {
-    return this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-    });
-  }
+    buildForm(): FormGroup {
+        return this.fb.group({
+            name: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
+        })
+    }
 }
 ```
 
@@ -495,17 +557,17 @@ export class UserEditComponent {
 }
 ```
 
-| Member | Description |
-|--------|-------------|
-| `form` | The `FormGroup` instance |
-| `valid` | Whether the form is valid and touched |
-| `getFormValue()` | Returns raw form value as `TCreate` |
-| `setFormValue(dto)` | Populates form with data (adds `id` control if present) |
-| `buildForm()` | Abstract — subclass defines form structure |
-| `fillFormById$(id)` | Fetches data from API and populates form |
-| `save$()` | Calls `create$` or `update$` based on presence of `id` |
-| `create$(resetForm)` | Calls `apiService.create()` |
-| `update$(id, resetForm)` | Calls `apiService.update()` |
+| Member                   | Description                                             |
+| ------------------------ | ------------------------------------------------------- |
+| `form`                   | The `FormGroup` instance                                |
+| `valid`                  | Whether the form is valid and touched                   |
+| `getFormValue()`         | Returns raw form value as `TCreate`                     |
+| `setFormValue(dto)`      | Populates form with data (adds `id` control if present) |
+| `buildForm()`            | Abstract — subclass defines form structure              |
+| `fillFormById$(id)`      | Fetches data from API and populates form                |
+| `save$()`                | Calls `create$` or `update$` based on presence of `id`  |
+| `create$(resetForm)`     | Calls `apiService.create()`                             |
+| `update$(id, resetForm)` | Calls `apiService.update()`                             |
 
 ---
 
@@ -562,18 +624,18 @@ export class SettingsComponent {
 Syncs authentication tokens between browser tabs using the `BroadcastChannel` API.
 
 ```typescript
-import { TokenSharingService } from '@touhidrahman/ngx-common';
+import { TokenSharingService } from '@touhidrahman/ngx-common'
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private tokenSharing: TokenSharingService) {
-    this.tokenSharing.init({
-      accessTokenResolver: () => this.getAccessToken(),
-      refreshTokenResolver: () => this.getRefreshToken(),
-      accessTokenSaver: (token) => this.setAccessToken(token),
-      refreshTokenSaver: (token) => this.setRefreshToken(token),
-    });
-  }
+    constructor(private tokenSharing: TokenSharingService) {
+        this.tokenSharing.init({
+            accessTokenResolver: () => this.getAccessToken(),
+            refreshTokenResolver: () => this.getRefreshToken(),
+            accessTokenSaver: (token) => this.setAccessToken(token),
+            refreshTokenSaver: (token) => this.setRefreshToken(token),
+        })
+    }
 }
 ```
 
@@ -588,30 +650,32 @@ When a new tab opens, it requests tokens from existing tabs. Any tab receiving n
 Generic wrapper for standardized API responses.
 
 ```typescript
-import { ApiResponse } from '@touhidrahman/ngx-common';
+import { ApiResponse } from '@touhidrahman/ngx-common'
 
 interface ApiResponse<T> {
-  data: T;
-  meta?: Record<string, unknown>;
-  pagination?: {
-    totalPages?: number;
-    totalItems?: number;
-    page?: number;
-    size?: number;
-  };
-  error?: unknown;
-  message?: string;
-  success?: boolean;
+    data: T
+    meta?: Record<string, unknown>
+    pagination?: {
+        totalPages?: number
+        totalItems?: number
+        page?: number
+        size?: number
+    }
+    error?: unknown
+    message?: string
+    success?: boolean
 }
 ```
 
 Used by `ApiService` and its consumers:
 
 ```typescript
-this.userService.find({ page: 1 }).subscribe((response: ApiResponse<User[]>) => {
-  const users = response.data;
-  const totalItems = response.pagination?.totalItems;
-});
+this.userService
+    .find({ page: 1 })
+    .subscribe((response: ApiResponse<User[]>) => {
+        const users = response.data
+        const totalItems = response.pagination?.totalItems
+    })
 ```
 
 ---
@@ -621,17 +685,19 @@ this.userService.find({ page: 1 }).subscribe((response: ApiResponse<User[]>) => 
 Generic key-value pair for dropdown options and select inputs.
 
 ```typescript
-import { LabelValuePair } from '@touhidrahman/ngx-common';
+import { LabelValuePair } from '@touhidrahman/ngx-common'
 
 const options: LabelValuePair<string>[] = [
-  { label: 'Active', value: 'active' },
-  { label: 'Inactive', value: 'inactive' },
-];
+    { label: 'Active', value: 'active' },
+    { label: 'Inactive', value: 'inactive' },
+]
 ```
 
 ```html
 <select>
-  <option *ngFor="let opt of options" [value]="opt.value">{{ opt.label }}</option>
+    <option *ngFor="let opt of options" [value]="opt.value">
+        {{ opt.label }}
+    </option>
 </select>
 ```
 
@@ -644,10 +710,10 @@ const options: LabelValuePair<string>[] = [
 Prepends `+88` (Bangladesh country code) to a string if it is not an email and does not already have the prefix.
 
 ```typescript
-import { addPhoneNumberPrefix } from '@touhidrahman/ngx-common';
+import { addPhoneNumberPrefix } from '@touhidrahman/ngx-common'
 
-addPhoneNumberPrefix('1712345678');        // '+881712345678'
-addPhoneNumberPrefix('user@example.com');  // 'user@example.com'
+addPhoneNumberPrefix('1712345678') // '+881712345678'
+addPhoneNumberPrefix('user@example.com') // 'user@example.com'
 ```
 
 ---
@@ -656,31 +722,31 @@ addPhoneNumberPrefix('user@example.com');  // 'user@example.com'
 
 ```typescript
 import {
-  download,
-  getHashedFileName,
-  getFileExtension,
-  getFileNameFromUrl,
-  getFileType,
-  getMimeType,
-} from '@touhidrahman/ngx-common';
+    download,
+    getHashedFileName,
+    getFileExtension,
+    getFileNameFromUrl,
+    getFileType,
+    getMimeType,
+} from '@touhidrahman/ngx-common'
 
 // Trigger a file download
-download('report.pdf', pdfBlob);
+download('report.pdf', pdfBlob)
 
 // Generate a unique filename
-const hashed = getHashedFileName(file);  // "550e8400-....pdf"
+const hashed = getHashedFileName(file) // "550e8400-....pdf"
 
 // Extract extension from a File object
-const ext = getFileExtension(file);  // "pdf"
+const ext = getFileExtension(file) // "pdf"
 
 // Get filename from URL
-const name = getFileNameFromUrl('https://example.com/files/doc.pdf');  // "doc.pdf"
+const name = getFileNameFromUrl('https://example.com/files/doc.pdf') // "doc.pdf"
 
 // Categorize file type
-const type = getFileType(file);  // "image" | "document" | "audio" | "video"
+const type = getFileType(file) // "image" | "document" | "audio" | "video"
 
 // Get MIME type from path
-const mime = getMimeType('photo.jpg');  // "image/jpeg"
+const mime = getMimeType('photo.jpg') // "image/jpeg"
 ```
 
 ---
@@ -690,9 +756,9 @@ const mime = getMimeType('photo.jpg');  // "image/jpeg"
 Recursively marks all controls in a form as dirty and touched.
 
 ```typescript
-import { markAllControlsAsDirty } from '@touhidrahman/ngx-common';
+import { markAllControlsAsDirty } from '@touhidrahman/ngx-common'
 
-markAllControlsAsDirty([myForm]);
+markAllControlsAsDirty([myForm])
 ```
 
 ---
@@ -702,10 +768,10 @@ markAllControlsAsDirty([myForm]);
 Checks if a date is in the future (compared from start of day).
 
 ```typescript
-import { isFutureDate } from '@touhidrahman/ngx-common';
+import { isFutureDate } from '@touhidrahman/ngx-common'
 
-isFutureDate('2026-12-25');  // true (if today is before Dec 25, 2026)
-isFutureDate('2020-01-01');  // false
+isFutureDate('2026-12-25') // true (if today is before Dec 25, 2026)
+isFutureDate('2020-01-01') // false
 ```
 
 ---
@@ -715,13 +781,13 @@ isFutureDate('2020-01-01');  // false
 Converts a plain object to Angular `HttpParams`, handling arrays by appending multiple values. Null/undefined values are skipped.
 
 ```typescript
-import { toHttpParams } from '@touhidrahman/ngx-common';
+import { toHttpParams } from '@touhidrahman/ngx-common'
 
 const params = toHttpParams({
-  page: 1,
-  size: 20,
-  tags: ['angular', 'typescript'],
-});
+    page: 1,
+    size: 20,
+    tags: ['angular', 'typescript'],
+})
 // URL: ?page=1&size=20&tags=angular&tags=typescript
 ```
 
@@ -732,9 +798,9 @@ const params = toHttpParams({
 Returns an Angular validator that checks if a form control value is an integer.
 
 ```typescript
-import { integerValidator } from '@touhidrahman/ngx-common';
+import { integerValidator } from '@touhidrahman/ngx-common'
 
-this.fb.control('', [integerValidator()]);
+this.fb.control('', [integerValidator()])
 // Returns { integer: true } on validation failure
 ```
 
@@ -745,10 +811,10 @@ this.fb.control('', [integerValidator()]);
 Masks the middle portion of a string, keeping visible characters at the beginning and end.
 
 ```typescript
-import { maskString } from '@touhidrahman/ngx-common';
+import { maskString } from '@touhidrahman/ngx-common'
 
-maskString('1234567890', 2, 2);   // "12******90"
-maskString('hello@example.com', 3, 4); // "hel***********mail"
+maskString('1234567890', 2, 2) // "12******90"
+maskString('hello@example.com', 3, 4) // "hel***********mail"
 ```
 
 `maskString(input, visibleCharsHead, visibleCharsTail)`
@@ -760,16 +826,16 @@ maskString('hello@example.com', 3, 4); // "hel***********mail"
 Recursively converts an object to `FormData`, handling nested objects (bracket notation), arrays, Dates, Files, and Blobs.
 
 ```typescript
-import { toFormData } from '@touhidrahman/ngx-common';
+import { toFormData } from '@touhidrahman/ngx-common'
 
 const data = {
-  name: 'John',
-  avatar: fileInput.files[0],
-  tags: ['dev', 'angular'],
-  metadata: { version: 1 },
-};
+    name: 'John',
+    avatar: fileInput.files[0],
+    tags: ['dev', 'angular'],
+    metadata: { version: 1 },
+}
 
-const formData = toFormData(data);
+const formData = toFormData(data)
 // formData entries:
 //   name -> "John"
 //   avatar -> File
@@ -786,14 +852,14 @@ Useful for file uploads with complex nested payloads.
 
 The following packages are required by your application when using this library:
 
-| Package | Used By |
-|---------|---------|
-| `@angular/common` ^21.1.0 | Core dependency |
-| `@angular/core` ^21.1.0 | Core dependency |
-| `@angular/forms` | `AbstractFormService`, `integerValidator`, `markAllControlsAsDirty` |
-| `@angular/router` | `Params` type in services |
-| `@auth0/angular-jwt` | `JwtService` |
-| `@ng-web-apis/common` | `LocalStorageService` |
-| `date-fns` | `UtcDatePipe`, `RelativeTimePipe`, `isFutureDate` |
-| `date-fns-tz` | `UtcDatePipe` |
-| `es-toolkit` | `TitlecasePipe`, `UniquePipe`, `UtcDatePipe` |
+| Package                   | Used By                                                             |
+| ------------------------- | ------------------------------------------------------------------- |
+| `@angular/common` ^21.1.0 | Core dependency                                                     |
+| `@angular/core` ^21.1.0   | Core dependency                                                     |
+| `@angular/forms`          | `AbstractFormService`, `integerValidator`, `markAllControlsAsDirty` |
+| `@angular/router`         | `Params` type in services                                           |
+| `@auth0/angular-jwt`      | `JwtService`                                                        |
+| `@ng-web-apis/common`     | `LocalStorageService`                                               |
+| `date-fns`                | `UtcDatePipe`, `RelativeTimePipe`, `isFutureDate`                   |
+| `date-fns-tz`             | `UtcDatePipe`                                                       |
+| `es-toolkit`              | `TitlecasePipe`, `UniquePipe`, `UtcDatePipe`                        |

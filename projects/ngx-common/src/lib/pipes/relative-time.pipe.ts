@@ -35,11 +35,11 @@ export class RelativeTimePipe implements PipeTransform {
         if (diffInSeconds < 0) return 'just now'
 
         const intervals = [
-            { label: 'year', seconds: 31536000 },
-            { label: 'month', seconds: 2592000 },
-            { label: 'week', seconds: 604800 },
-            { label: 'day', seconds: 86400 },
-            { label: 'hour', seconds: 3600 },
+            { label: 'year', seconds: 365 * 24 * 60 * 60 },
+            { label: 'month', seconds: 30 * 24 * 60 * 60 },
+            { label: 'week', seconds: 7 * 24 * 60 * 60 },
+            { label: 'day', seconds: 24 * 60 * 60 },
+            { label: 'hour', seconds: 60 * 60 },
             { label: 'minute', seconds: 60 },
             { label: 'second', seconds: 1 },
         ]

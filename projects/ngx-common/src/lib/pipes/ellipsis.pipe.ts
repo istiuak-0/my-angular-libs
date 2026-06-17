@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
-    name: 'shortDescription',
+    name: 'ellipsis',
 })
-export class ShortDescriptionPipe implements PipeTransform {
+export class EllipsisPipe implements PipeTransform {
     transform(description: string, limit = 150): string {
         if (!description) return ''
         const plainText = description.replace(/<[^>]*>/g, '')
