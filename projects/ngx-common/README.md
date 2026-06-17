@@ -177,16 +177,8 @@ Converts a number of bytes into a human-readable format.
 Rounds a number up (`Math.ceil`).
 
 ```typescript
-{
-    {
-        4.2 | ceiling
-    }
-} // 5
-{
-    {
-        ;-4.2 | ceiling
-    }
-} // -4
+{{ 4.2 | ceiling }}  // 5
+{{ -4.2 | ceiling }} // -4
 ```
 
 ---
@@ -222,16 +214,8 @@ const items = [{ name: 'John' }, { name: 'Jane' }];
 Rounds a number down (`Math.floor`).
 
 ```typescript
-{
-    {
-        4.9 | floor
-    }
-} // 4
-{
-    {
-        ;-4.9 | floor
-    }
-} // -5
+{{ 4.9 | floor }}  // 4
+{{ -4.9 | floor }} // -5
 ```
 
 ---
@@ -241,16 +225,8 @@ Rounds a number down (`Math.floor`).
 Returns the first character of a string, uppercased.
 
 ```typescript
-{
-    {
-        'john' | initialName
-    }
-} // "J"
-{
-    {
-        '' | initialName
-    }
-} // ""
+{{ 'john' | initialName }} // "J"
+{{ '' | initialName }}     // ""
 ```
 
 ---
@@ -260,16 +236,8 @@ Returns the first character of a string, uppercased.
 Checks if a filename has an image extension (`jpg`, `jpeg`, `png`, `gif`, `bmp`, `svg`, `webp`).
 
 ```typescript
-{
-    {
-        'photo.jpg' | isImage
-    }
-} // true
-{
-    {
-        'document.pdf' | isImage
-    }
-} // false
+{{ 'photo.jpg' | isImage }}     // true
+{{ 'document.pdf' | isImage }}  // false
 ```
 
 ---
@@ -329,12 +297,7 @@ Useful for pagination:
 Converts a date into a relative time string.
 
 ```typescript
-{
-    {
-        someDate | relativeTime
-    }
-}
-// "just now", "5 minutes ago", "2 hours ago", "1 day ago", "recently"
+{{ someDate | relativeTime }} // "just now", "5 minutes ago", "2 hours ago", "1 day ago", "recently"
 ```
 
 Accepts ISO strings or `Date` objects.
@@ -365,12 +328,12 @@ Trusts a URL as a resource URL (for iframes, embeds, etc.).
 
 ---
 
-### `shortDescription`
+### `ellipsis`
 
 Strips HTML tags and truncates to a character limit (default 150), appending `...` when truncated.
 
 ```typescript
-{{ '<p>Long HTML content here</p>' | shortDescription:50 }}
+{{ '<p>Long HTML content here</p>' | ellipsis:50 }}
 ```
 
 ---
@@ -407,11 +370,7 @@ Truncates a string to a character limit with ellipsis, optionally preserving who
 Capitalizes the first character of a string.
 
 ```typescript
-{
-    {
-        'hello world' | titlecase
-    }
-} // "Hello world"
+{{ 'hello world' | titlecase }} // "Hello world"
 ```
 
 ---
@@ -421,16 +380,8 @@ Capitalizes the first character of a string.
 Filters an array to unique values.
 
 ```typescript
-{
-    {
-        ;[1, 2, 2, 3, 3, 3] | unique
-    }
-} // [1, 2, 3]
-{
-    {
-        ;['a', 'b', 'a', 'c'] | unique
-    }
-} // ['a', 'b', 'c']
+{{ [1, 2, 2, 3, 3, 3] | unique }} // [1, 2, 3]
+{{ ['a', 'b', 'a', 'c'] | unique }} // ['a', 'b', 'c']
 ```
 
 ---
@@ -705,16 +656,18 @@ const options: LabelValuePair<string>[] = [
 
 ## Utility Functions
 
-### `addPhoneNumberPrefix`
+### `addPhonePrefix`
 
-Prepends `+88` (Bangladesh country code) to a string if it is not an email and does not already have the prefix.
+Prepends a given prefix to a string if it is not an email and does not already have the prefix.
 
 ```typescript
-import { addPhoneNumberPrefix } from '@touhidrahman/ngx-common'
+import { addPhonePrefix } from '@touhidrahman/ngx-common'
 
-addPhoneNumberPrefix('1712345678') // '+881712345678'
-addPhoneNumberPrefix('user@example.com') // 'user@example.com'
+addPhonePrefix('1712345678', '+88') // '+881712345678'
+addPhonePrefix('user@example.com', '+88') // 'user@example.com'
 ```
+
+`addPhonePrefix(input, prefix)` — `prefix` is prepended only when the value is not an email and doesn't already start with `prefix`.
 
 ---
 
