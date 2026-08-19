@@ -6,16 +6,20 @@
     "tags": [],
     "targets": {
         "build": {
-            "executor": "@nx/js:tsc",
-            "outputs": ["{options.outputPath}"],
+            "executor": "@nx/rollup:rollup",
+            "outputs": [
+                "{options.outputPath}"
+            ],
             "options": {
                 "outputPath": "dist/libs/auditlog-sdk",
-                "main": "libs/auditlog-sdk/src/index.ts",
                 "tsConfig": "libs/auditlog-sdk/tsconfig.lib.json",
-                "assets": [
-                    "libs/auditlog-sdk/*.md",
-                    "libs/auditlog-sdk/package.json"
-                ]
+                "main": "libs/auditlog-sdk/src/index.ts",
+                "format": [
+                    "cjs",
+                    "esm"
+                ],
+                "generatePackageJson": true,
+                "generateExportsField": true
             }
         }
     }
