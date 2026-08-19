@@ -19,7 +19,14 @@
                     "esm"
                 ],
                 "generatePackageJson": true,
-                "generateExportsField": true
+                "generateExportsField": true,
+                "assets": [
+                    {
+                        "glob": "README.md",
+                        "input": "libs/auditlog-sdk",
+                        "output": "."
+                    }
+                ]
             }
         }
     }
